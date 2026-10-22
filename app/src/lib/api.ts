@@ -140,7 +140,11 @@ export interface ApiClient {
 
 /** Factory — injectable config replaces env-at-module-load + module-reload test hacks. */
 export function createApiClient(options: ApiClientOptions = {}): ApiClient {
-  const useRemote = options.useRemote ?? import.meta.env.VITE_USE_REMOTE_API === 'true';
+  // Pitch/concept demo: the bundled catalog is the source of truth, so never hit
+  // the remote API (no failed fetches, no degraded banner). Set VITE_DEMO_MODE=false
+  // to re-enable VITE_USE_REMOTE_API.
+  const demoMode = import.meta.env.VITE_DEMO_MODE !== 'false';
+  const useRemote = options.useRemote ?? (!demoMode && import.meta.env.VITE_USE_REMOTE_API === 'true');
   const baseUrl = options.baseUrl ?? import.meta.env.VITE_API_BASE_URL ?? '/api';
   const fetchImpl = options.fetchImpl ?? globalThis.fetch;
   const onFallback = options.onFallback;

@@ -1,13 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import * as Sentry from '@sentry/react'
 import App from './App'
 // Self-hosted variable fonts (SEO-AUDIT fix #1: zero layout shift, no Google Fonts)
 import '@fontsource-variable/inter/wght.css'
-import '@fontsource-variable/inter/wght-italic.css'
 import '@fontsource-variable/montserrat/wght.css'
-import '@fontsource-variable/montserrat/wght-italic.css'
 import './index.css'
 import { QueryProvider } from './lib/queryProvider'
 
@@ -15,10 +12,13 @@ import './lib/env-validation'
 
 // Initialize Sentry only when DSN is configured
 if (import.meta.env.VITE_SENTRY_DSN && import.meta.env.VITE_SENTRY_DSN !== 'your_sentry_dsn_here') {
-  Sentry.init({
-    dsn: import.meta.env.VITE_SENTRY_DSN,
-    integrations: [Sentry.browserTracingIntegration()],
-    tracesSampleRate: 1.0,
+  // Loaded on demand so the SDK never ships in the main bundle when unused.
+  void import('@sentry/react').then((Sentry) => {
+    Sentry.init({
+      dsn: import.meta.env.VITE_SENTRY_DSN,
+      integrations: [Sentry.browserTracingIntegration()],
+      tracesSampleRate: 1.0,
+    })
   })
 }
 

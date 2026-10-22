@@ -29,7 +29,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#050505] pt-32 pb-12 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-[#151c3a] pt-32 pb-12 overflow-hidden border-t border-white/5">
       {/* Subtle Background Glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary/5 blur-[150px] opacity-20 pointer-events-none" />
 
@@ -37,7 +37,8 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 mb-24">
           {/* Brand Vision */}
           <div className="lg:col-span-4 space-y-10">
-            <Link to="/" className="inline-block">
+            <Link to="/" className="inline-flex items-center gap-3">
+              <img src="/images/brobear-96.webp" width="48" height="48" alt="Bro Bear logo" className="w-12 h-12" loading="lazy" />
               <span className="text-4xl font-display font-black text-white tracking-tighter">
                 Rollers<span className="text-primary"> Republic</span>
               </span>
@@ -141,7 +142,7 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-2 text-white/50 text-[10px] font-bold">
               <ShieldCheck className="h-3 w-3 text-primary/40" />
-              SECURED BY ENTERPRISE ENCRYPTION
+              CONCEPT DEMO BY HOPE THEORY · NOT THE LIVE STORE
             </div>
           </div>
 

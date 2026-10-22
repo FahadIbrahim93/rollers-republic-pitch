@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { siteConfig, features } from '@/lib/config';
 
@@ -57,7 +56,7 @@ export function AgeGate() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-xl flex items-center justify-center px-4"
+        className="fixed inset-0 z-[100] bg-[#151c3a]/95 backdrop-blur-xl flex items-center justify-center px-4"
         role="dialog"
         aria-modal="true"
         aria-labelledby="age-gate-title"
@@ -67,13 +66,11 @@ export function AgeGate() {
           initial={{ scale: 0.95, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-md w-full bg-[#111] border border-primary/25 rounded-3xl p-10 text-center shadow-2xl shadow-primary/10"
+          className="max-w-md w-full bg-[#232c55] border border-primary/25 rounded-3xl p-10 text-center shadow-2xl shadow-primary/10"
         >
           {state === 'locked' ? (
             <>
-              <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-center">
-                <ShieldCheck className="w-8 h-8 text-primary" aria-hidden="true" />
-              </div>
+              <img src="/images/brobear-192.webp" width="96" height="96" alt="Bro Bear logo" className="w-24 h-24 mx-auto mb-6" />
               <h2 id="age-gate-title" className="text-3xl font-display font-black text-white mb-4 tracking-tight">
                 Are you 18 <span className="text-primary italic">or older?</span>
               </h2>

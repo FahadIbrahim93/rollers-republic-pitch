@@ -133,7 +133,7 @@ function startStaticServer() {
 }
 
 // ---------- routes from sitemap (pathname only, deduped) ----------
-const sitemap = readFileSync(join(appDir, 'public/sitemap.xml'), 'utf8');
+const sitemap = readFileSync(join(appDir, 'scripts/prerender-routes.xml'), 'utf8');
 const NOINDEX = ['/cart', '/checkout', '/success', '/login', '/register', '/account'];
 const locs = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1].trim());
 

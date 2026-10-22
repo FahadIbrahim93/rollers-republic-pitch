@@ -61,7 +61,7 @@ export const buildLocalBusinessJsonLd = (): Record<string, unknown> => ({
   description: siteConfig.description,
   url: SITE_URL,
   logo: toAbsoluteUrl(brandConfig.favicon),
-  image: toAbsoluteUrl('/images/og-image.png'),
+  image: toAbsoluteUrl('/images/og-image.jpg'),
   telephone: `+88${siteConfig.phone}`,
   email: siteConfig.email,
   foundingDate: '2013',
@@ -160,7 +160,7 @@ export function useDocumentSEO({
   // by Facebook/WhatsApp link previews). Product photos under /img/* are
   // same-origin (proxied server-side) and render fine in link previews —
   // only SVG sources are swapped for the default card.
-  const DEFAULT_OG_IMAGE = '/images/og-image.png';
+  const DEFAULT_OG_IMAGE = '/images/og-image.jpg';
   const ogImage =
     image && !/\.svg(\?|$)/i.test(image) ? image : DEFAULT_OG_IMAGE;
 
@@ -174,9 +174,8 @@ export function useDocumentSEO({
     upsertMetaTag('meta[name="keywords"]', { name: 'keywords', content: keywords });
     upsertMetaTag(
       'meta[name="robots"]',
-      noindex
-        ? { name: 'robots', content: 'noindex, nofollow' }
-        : { name: 'robots', content: 'index, follow' },
+      // Concept demo: never indexable (avoids duplicate content vs rollerspub.com).
+      { name: 'robots', content: 'noindex, nofollow' },
     );
     upsertMetaTag('meta[property="og:title"]', { property: 'og:title', content: `${title} | ${siteConfig.name}` });
     upsertMetaTag('meta[property="og:description"]', { property: 'og:description', content: description });

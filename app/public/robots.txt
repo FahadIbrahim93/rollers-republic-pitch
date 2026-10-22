@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://rollers-republic.vercel.app/sitemap.xml
+Disallow: /

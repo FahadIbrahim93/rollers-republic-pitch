@@ -21,7 +21,7 @@ export function NewArrivals() {
   if (!isLoading && newProducts.length === 0) return null;
 
   return (
-    <section ref={sectionRef} className="relative py-32 bg-[#050505] overflow-hidden">
+    <section ref={sectionRef} className="relative py-32 bg-[#151c3a] overflow-hidden">
       <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 mb-16">
         <div className="flex flex-col md:flex-row justify-between md:items-end gap-8">
           <motion.div

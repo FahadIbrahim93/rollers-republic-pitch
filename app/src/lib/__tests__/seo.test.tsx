@@ -143,7 +143,7 @@ describe('useDocumentSEO', () => {
     expect(document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href).toContain(
       '/shop',
     );
-    expect(metaContent('meta[name="robots"]')).toBe('index, follow');
+    expect(metaContent('meta[name="robots"]')).toBe('noindex, nofollow');
   });
 
   it('noindex pages get noindex,nofollow', () => {
@@ -186,7 +186,7 @@ describe('useDocumentSEO', () => {
     );
 
     // Facebook/WhatsApp cannot render SVG previews, so the SVG must be swapped.
-    expect(metaContent('meta[property="og:image"]')).toContain('/images/og-image.png');
+    expect(metaContent('meta[property="og:image"]')).toContain('/images/og-image.jpg');
   });
 
   it('injects page JSON-LD and the sitewide LocalBusiness block separately', () => {

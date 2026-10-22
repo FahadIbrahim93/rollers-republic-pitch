@@ -16,11 +16,11 @@ export function Categories() {
     <section
       id="categories"
       ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-[#050505] overflow-hidden"
+      className="relative py-24 lg:py-32 bg-[#151c3a] overflow-hidden"
     >
       {/* Dynamic Background Mesh */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(74,222,128,0.05)_0%,transparent_50%)]" />
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(206,162,127,0.05)_0%,transparent_50%)]" />
         <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_80%,rgba(34,197,94,0.03)_0%,transparent_50%)]" />
       </div>
 
@@ -70,7 +70,7 @@ SHOP <span className="text-white/30 italic">BY</span> <span className="text-prim
               <Link to={`/shop?category=${category.slug}`}>
                 <motion.div
                   whileHover={{ y: -8 }}
-                  className="group relative h-[450px] rounded-3xl overflow-hidden cursor-pointer bg-[#111] border border-white/5 transition-all duration-500 hover:border-primary/30 shadow-2xl"
+                  className="group relative h-[450px] rounded-3xl overflow-hidden cursor-pointer bg-[#232c55] border border-white/5 transition-all duration-500 hover:border-primary/30 shadow-2xl"
                 >
                   {/* Photo backdrop; gradient panel sits beneath as the
                       loading/fallback layer (design-system amber ramp) */}

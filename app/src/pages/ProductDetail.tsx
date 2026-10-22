@@ -58,7 +58,7 @@ export function ProductDetail() {
 
   if (isLoading) {
     return (
-      <main className="min-h-screen bg-[#050505] pt-24 flex items-center justify-center">
+      <main className="min-h-screen bg-[#151c3a] pt-24 flex items-center justify-center">
         <div className="text-white opacity-50">Loading product...</div>
       </main>
     );
@@ -66,7 +66,7 @@ export function ProductDetail() {
 
   if (!product) {
     return (
-      <main className="min-h-screen bg-[#050505] pt-24 flex items-center justify-center">
+      <main className="min-h-screen bg-[#151c3a] pt-24 flex items-center justify-center">
         <div className="text-center space-y-6">
           <div className="w-24 h-24 bg-red-500/10 rounded-full flex items-center justify-center mx-auto">
             <Shield className="w-12 h-12 text-red-500" />
@@ -95,7 +95,7 @@ export function ProductDetail() {
   };
 
   return (
-    <main className="min-h-screen bg-[#050505] pt-24">
+    <main className="min-h-screen bg-[#151c3a] pt-24">
       {/* Background Ambience */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[150px] opacity-20" />
@@ -329,7 +329,7 @@ export function ProductDetail() {
                             className="flex items-center gap-2"
                           >
                             <ShoppingCart className="w-6 h-6 transition-transform group-hover/btn:-rotate-12" />
-                            <span>Add to Collection</span>
+                            <span>Add to Cart</span>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -341,10 +341,10 @@ export function ProductDetail() {
               {/* Trust Badges */}
               <div className="grid grid-cols-2 gap-6 p-8 bg-white/[0.02] border border-white/5 rounded-3xl backdrop-blur-sm">
                 {[
-                  { icon: Truck, text: 'Express Logistics', desc: 'Dhaka Delivery 24h' },
-                  { icon: Shield, text: 'Secure Integrity', desc: 'Secure Transactions' },
-                  { icon: RotateCcw, text: 'Seamless Return', desc: '30-Day Policy' },
-                  { icon: Star, text: 'Elite Quality', desc: 'Certified Premium' },
+                  { icon: Truck, text: 'Dhaka Delivery', desc: 'Cash on delivery' },
+                  { icon: Shield, text: 'Order on WhatsApp', desc: '01330005300' },
+                  { icon: RotateCcw, text: 'Questions?', desc: 'Message us before you buy' },
+                  { icon: Star, text: 'Genuine Brands', desc: 'Since 2013' },
                 ].map((feature) => (
                   <div key={feature.text} className="flex gap-4 group/item">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0 group-hover/item:bg-primary group-hover/item:text-black transition-colors duration-500">

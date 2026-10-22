@@ -18,11 +18,11 @@ export default defineConfig({
     cssCodeSplit: false,
     rollupOptions: {
       output: {
+        // Only React is pinned to its own long-cached chunk. framer-motion,
+        // zod, react-hook-form etc. are left to Rollup so they load only with
+        // the lazy routes that use them (zod/RHF: checkout/login only).
         manualChunks: {
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-motion': ['framer-motion'],
-          'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-slot', 'lucide-react'],
-          'vendor-utils': ['@tanstack/react-query', 'zod', 'zustand', 'clsx', 'tailwind-merge']
         }
       }
     }

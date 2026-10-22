@@ -109,7 +109,7 @@ export function Checkout() {
 
   if (items.length === 0 && !isComplete) {
     return (
-      <main className="min-h-screen bg-[#050505] pt-24 flex items-center justify-center px-4">
+      <main className="min-h-screen bg-[#151c3a] pt-24 flex items-center justify-center px-4">
         <div className="text-center space-y-8">
           <div className="w-24 h-24 bg-white/[0.03] border border-white/10 rounded-full flex items-center justify-center mx-auto shadow-2xl">
             <ShoppingCart className="w-10 h-10 text-white/50" />
@@ -119,7 +119,7 @@ export function Checkout() {
             <p className="text-white/60 text-lg">You haven't added any premium artifacts to your collection yet.</p>
           </div>
           <Button asChild size="lg" className="rounded-full bg-white text-black hover:bg-primary px-12 h-14 font-black">
-            <Link to="/shop">Explore Collection</Link>
+            <Link to="/shop">Shop Now</Link>
           </Button>
         </div>
       </main>
@@ -128,14 +128,14 @@ export function Checkout() {
 
   if (isComplete) {
     return (
-      <main className="min-h-screen bg-[#050505] pt-24 flex items-center justify-center px-4">
+      <main className="min-h-screen bg-[#151c3a] pt-24 flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl w-full text-center space-y-10 p-12 bg-white/[0.02] border border-white/5 rounded-[3rem] backdrop-blur-3xl shadow-2xl"
         >
-          <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(74,222,128,0.3)]">
+          <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center mx-auto shadow-[0_0_50px_rgba(206,162,127,0.3)]">
             <Check className="w-12 h-12 text-black stroke-[3px]" />
           </div>
           <div className="space-y-4">
@@ -155,7 +155,7 @@ export function Checkout() {
   }
 
   return (
-    <main className="min-h-screen bg-[#050505] pt-24">
+    <main className="min-h-screen bg-[#151c3a] pt-24">
       {/* Background Ambience */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[150px] opacity-10" />
@@ -282,7 +282,7 @@ export function Checkout() {
                               className={cn(
                                 "flex items-center gap-6 p-8 rounded-3xl border transition-all cursor-pointer group",
                                 paymentMethod === pm.id
-                                  ? "bg-primary/5 border-primary shadow-[0_0_30px_rgba(74,222,128,0.05)]"
+                                  ? "bg-primary/5 border-primary shadow-[0_0_30px_rgba(206,162,127,0.05)]"
                                   : "bg-white/[0.02] border-white/5 hover:border-white/20"
                               )}
                             >
@@ -408,7 +408,7 @@ export function Checkout() {
                         <Button
                           type="submit"
                           disabled={isProcessing}
-                          className="w-full h-16 rounded-2xl bg-primary text-black hover:bg-white transition-all duration-500 font-black text-lg shadow-[0_0_40px_rgba(74,222,128,0.2)] disabled:opacity-50"
+                          className="w-full h-16 rounded-2xl bg-primary text-black hover:bg-white transition-all duration-500 font-black text-lg shadow-[0_0_40px_rgba(206,162,127,0.2)] disabled:opacity-50"
                         >
                           {isProcessing ? 'Processing Securely...' : 'Authorize Transaction'}
                         </Button>
