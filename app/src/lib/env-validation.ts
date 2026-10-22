@@ -16,7 +16,7 @@ function validateEnv(): EnvConfig {
   const warnings: string[] = [];
 
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-  if (!apiBaseUrl && import.meta.env.PROD) {
+  if (!apiBaseUrl && import.meta.env.PROD && import.meta.env.VITE_DEMO_MODE === 'false' && import.meta.env.VITE_USE_REMOTE_API === 'true') {
     warnings.push(
       'VITE_API_BASE_URL is not set. API calls will default to /api (relative). ' +
       'This is fine for Vercel deployments but may fail in other environments.'
@@ -36,7 +36,7 @@ function validateEnv(): EnvConfig {
 
   return {
     apiBaseUrl: apiBaseUrl || '/api',
-    useRemoteApi: import.meta.env.VITE_USE_REMOTE_API === 'true',
+    useRemoteApi: import.meta.env.VITE_DEMO_MODE === 'false' && import.meta.env.VITE_USE_REMOTE_API === 'true',
     isDev: import.meta.env.DEV,
   };
 }

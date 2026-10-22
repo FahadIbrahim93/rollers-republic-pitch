@@ -62,7 +62,7 @@ export function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-700',
           isScrolled
-            ? 'bg-black/40 backdrop-blur-2xl border-b border-white/5 py-3'
+            ? 'bg-[#1b2347]/90 backdrop-blur-2xl border-b border-white/5 py-3'
             : 'bg-transparent py-4 top-10'
         )}
       >
@@ -70,13 +70,7 @@ export function Navbar() {
           <div className="flex items-center justify-between">
             {/* Brand Identity */}
             <Link to="/" className="relative group flex items-center gap-3">
-              <motion.div
-                whileHover={{ rotate: 180, scale: 0.9 }}
-                transition={{ duration: 0.6, ease: "circOut" }}
-                className="w-10 h-10 bg-primary rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(74,222,128,0.3)] transition-shadow group-hover:shadow-primary/50"
-              >
-                <div className="w-5 h-5 border-2 border-black rounded-full border-t-transparent animate-spin-slow" />
-              </motion.div>
+              <img src="/images/brobear-96.webp" srcSet="/images/brobear-96.webp 1x, /images/brobear-192.webp 2x" width="44" height="44" alt="Bro Bear logo" className="w-11 h-11" />
               <div className="flex flex-col">
                 <span className="text-2xl font-display font-black text-white tracking-widest leading-none">
                   ROLLERS<span className="text-primary italic"> REPUBLIC</span>

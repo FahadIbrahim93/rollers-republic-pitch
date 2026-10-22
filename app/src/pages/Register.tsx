@@ -59,7 +59,7 @@ export function Register() {
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] pt-24">
+    <main className="min-h-screen bg-[#1b2347] pt-24">
       {/* Hero */}
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1d1d1d] to-transparent" />

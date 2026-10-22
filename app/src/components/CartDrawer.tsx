@@ -26,7 +26,7 @@ export function CartDrawer() {
 
   return (
     <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-      <SheetContent className="flex flex-col w-full sm:max-w-lg bg-[#050505] border-l border-white/5 p-0 overflow-hidden shadow-2xl shadow-black">
+      <SheetContent className="flex flex-col w-full sm:max-w-lg bg-[#151c3a] border-l border-white/5 p-0 overflow-hidden shadow-2xl shadow-black">
         <SheetHeader className="p-8 border-b border-white/5 bg-white/[0.02]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -166,7 +166,7 @@ export function CartDrawer() {
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-white/[0.02] rounded-2xl border border-white/5">
                   <Truck className="w-5 h-5 text-primary" />
-                  <span className="text-[9px] font-black uppercase tracking-widest text-white/60 italic">Elite Dispatch</span>
+                  <span className="text-[9px] font-black uppercase tracking-widest text-white/60 italic">Dhaka Delivery</span>
                 </div>
               </div>
 

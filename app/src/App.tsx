@@ -36,7 +36,7 @@ const AgePolicy = React.lazy(() => import('@/pages/Legal').then(m => ({ default:
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
+    <div className="min-h-screen bg-[#1b2347]">
       <ScrollToTop />
       <AgeGate />
       <Navbar />

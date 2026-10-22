@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * generate-sitemap.mjs — build public/sitemap.xml from the canonical catalog
+ * generate-sitemap.mjs — build scripts/prerender-routes.xml (prerender route list; NOT served — demo is noindex) from the canonical catalog
  * (SEO-AUDIT fix #3: the store has 949 products; the old hand-written sitemap
  * had 4 URLs).
  *
@@ -26,7 +26,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const appDir = resolve(__dirname, '..');
 const rootDir = resolve(appDir, '..');
-const outFile = resolve(appDir, 'public/sitemap.xml');
+const outFile = resolve(appDir, 'scripts/prerender-routes.xml');
 
 const SITE_URL =
   process.env.SITE_URL || 'https://rollers-republic.vercel.app';

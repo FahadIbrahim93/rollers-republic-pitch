@@ -183,12 +183,12 @@ export function Hero() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center overflow-hidden bg-[#0a0a0a] selection:bg-primary selection:text-black"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#1b2347] selection:bg-primary selection:text-black"
     >
       {/* Background Effects */}
       <SmokeParticles />
       <GradientOrbs />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.05),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(206,162,127,0.05),transparent_70%)]" />
 
       {/* Content */}
       <motion.div
@@ -208,7 +208,7 @@ export function Hero() {
               <Badge variant="outline" className="border-primary/30 text-primary py-1.5 px-4 bg-primary/5 uppercase tracking-[0.2em] text-[10px] font-bold">
                 The Republic of Rollers
               </Badge>
-              <Badge className="bg-primary text-black font-black px-4 py-1.5 rounded-full animate-bounce shadow-[0_0_20px_rgba(212,175,55,0.5)]">
+              <Badge className="bg-primary text-black font-black px-4 py-1.5 rounded-full animate-bounce shadow-[0_0_20px_rgba(206,162,127,0.5)]">
                 SAME-DAY DHAKA DELIVERY
               </Badge>
               <div className="h-[1px] w-12 bg-primary/30" />
@@ -252,7 +252,7 @@ export function Hero() {
             >
               <Button asChild size="lg" className="rounded-full h-auto py-5 px-10 text-lg font-bold group shadow-2xl shadow-primary/20 bg-primary hover:bg-primary/90 text-black">
                 <Link to="/shop">
-                  Explore Collection
+                  Shop Now
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -260,7 +260,7 @@ export function Hero() {
               <Button asChild variant="ghost" size="lg" className="rounded-full h-auto py-5 px-8 text-white/60 hover:text-white hover:bg-white/5 border border-white/5">
                 <Link to="/#categories">
                   <Play className="mr-2 w-4 h-4 fill-current" />
-                  View Lookbook
+                  Shop by Category
                 </Link>
               </Button>
             </motion.div>
@@ -364,7 +364,7 @@ export function Hero() {
         <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-bold">Scroll Down</span>
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0a0a0a] to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#1b2347] to-transparent z-10" />
     </section>
   );
 }

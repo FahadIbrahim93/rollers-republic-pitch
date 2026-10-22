@@ -6,7 +6,7 @@ import { useDocumentSEO } from '@/lib/seo';
 
 function LegalShell({ title, accent, children }: { title: string; accent: string; children: React.ReactNode }) {
   return (
-    <main className="min-h-screen bg-[#0a0a0a]">
+    <main className="min-h-screen bg-[#1b2347]">
       <section className="relative pt-32 pb-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1d1d1d] to-transparent" />
         <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20 max-w-3xl mx-auto">

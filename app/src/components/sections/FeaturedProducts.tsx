@@ -20,7 +20,7 @@ export function FeaturedProducts() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 lg:py-48 bg-[#050505] overflow-hidden"
+      className="relative py-32 lg:py-48 bg-[#151c3a] overflow-hidden"
     >
       {/* Dynamic Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none">

@@ -146,7 +146,7 @@ export function Shop() {
   });
 
   return (
-    <main className="min-h-screen bg-[#050505] pt-24">
+    <main className="min-h-screen bg-[#151c3a] pt-24">
       {/* Dynamic Background Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[180px] opacity-20" />
@@ -179,7 +179,7 @@ export function Shop() {
         </section>
 
         {/* Intelligence Bar */}
-        <section className="sticky top-20 z-40 bg-[#050505]/80 backdrop-blur-2xl border-y border-white/5 px-4 sm:px-6 lg:px-12 xl:px-20 py-4">
+        <section className="sticky top-20 z-40 bg-[#151c3a]/80 backdrop-blur-2xl border-y border-white/5 px-4 sm:px-6 lg:px-12 xl:px-20 py-4">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             <div className="flex items-center gap-4 w-full lg:w-auto">
               <div className="relative group flex-1 lg:w-80">
@@ -262,7 +262,7 @@ export function Shop() {
                     className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-2xl px-6 text-sm font-bold text-white/60 hover:text-white hover:border-primary/30 appearance-none focus:outline-none transition-all cursor-pointer"
                   >
                     {sortOptions.map((option) => (
-                      <option key={option.value} value={option.value} className="bg-[#111] text-white py-2">
+                      <option key={option.value} value={option.value} className="bg-[#232c55] text-white py-2">
                         {option.label}
                       </option>
                     ))}

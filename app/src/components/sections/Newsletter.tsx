@@ -36,11 +36,11 @@ export function Newsletter() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-[#050505] overflow-hidden"
+      className="relative py-24 lg:py-32 bg-[#151c3a] overflow-hidden"
     >
       {/* Premium Background: Mesh + Grid + Radial Glow */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:60px_60px] opacity-10" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#232c55_1px,transparent_1px),linear-gradient(to_bottom,#232c55_1px,transparent_1px)] bg-[size:60px_60px] opacity-10" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] opacity-50 transition-opacity duration-1000" />
       </div>
 
@@ -59,7 +59,7 @@ export function Newsletter() {
                 className="flex justify-center"
               >
                 <Badge variant="outline" className="border-primary/20 text-primary py-1 px-4 tracking-[0.2em] font-bold text-[10px] uppercase bg-primary/5">
-                  The Inner Circle
+                  Stay in the Loop
                 </Badge>
               </motion.div>
 
@@ -70,8 +70,8 @@ export function Newsletter() {
                   transition={{ duration: 0.8, delay: 0.1 }}
                   className="text-5xl sm:text-6xl lg:text-7xl font-display font-black text-white leading-none tracking-tighter"
                 >
-                  UNLOCK THE <br />
-                  <span className="text-primary italic">FUTURE.</span>
+                  NEW STOCK <br />
+                  <span className="text-primary italic">FIRST.</span>
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -79,7 +79,7 @@ export function Newsletter() {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="text-white/60 text-lg max-w-xl mx-auto font-light"
                 >
-                  Subscribe to receive drop alerts, engineering deep-dives, and exclusive member-only pricing.
+                  Leave your email and we will message you when new papers, grinders and glass arrive.
                 </motion.p>
               </div>
 
@@ -98,7 +98,7 @@ export function Newsletter() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="ACCESS KEY (EMAIL)"
+                      placeholder="Your email"
                       disabled={isSubmitted}
                       className="bg-white/5 border-white/10 text-white placeholder:text-white/50 h-14 pl-12 rounded-2xl focus-visible:ring-primary/20 transition-all font-mono text-xs tracking-widest uppercase"
                     />
@@ -115,11 +115,11 @@ export function Newsletter() {
                         className="flex items-center gap-2"
                       >
                         <Check className="h-4 w-4" />
-                        ACCESS GRANTED
+                        THANKS!
                       </motion.div>
                     ) : (
                       <div className="flex items-center gap-2">
-                        INITIALIZE
+                        SIGN UP
                         <Send className="h-4 w-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                       </div>
                     )}
@@ -127,7 +127,7 @@ export function Newsletter() {
                 </div>
 
                 <p className="mt-6 text-[10px] text-white/50 uppercase tracking-[0.2em] font-bold">
-                  ENCRYPTED TRANSMISSION • ZERO SPAM POLICY
+                  NO SPAM, JUST NEW ARRIVALS
                 </p>
               </motion.form>
 

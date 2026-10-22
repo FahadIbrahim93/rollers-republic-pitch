@@ -7,23 +7,23 @@ import { Badge } from '@/components/ui/badge';
 const features = [
   {
     icon: Award,
-    title: 'Heritage Quality',
-    description: 'Each piece is hand-inspected for structural integrity and aesthetic perfection.',
+    title: 'Genuine Brands',
+    description: 'RAW, OCB, Elements, BroBear and more: the papers, grinders and glass you already know.',
   },
   {
     icon: Truck,
-    title: 'Rapid Deployment',
-    description: 'Same-day delivery in Dhaka Metro. Global tracking for every single order.',
+    title: 'Delivery in Dhaka',
+    description: 'Order on WhatsApp and we deliver across Dhaka. Cash on delivery available.',
   },
   {
     icon: HeadphonesIcon,
-    title: 'Concierge Support',
-    description: 'Expert guidance from enthusiasts who know the lifestyle inside out.',
+    title: 'Friendly Advice',
+    description: 'Not sure which grinder or paper to pick? Message us and we will help.',
   },
   {
     icon: CreditCard,
-    title: 'Secure Integrity',
-    description: 'Military-grade encryption for every transaction. Your privacy is paramount.',
+    title: 'Visit the Shop',
+    description: 'Drop by Plaza A.R, Dhanmondi 28. Serving Dhaka since 2013.',
   },
 ];
 
@@ -34,10 +34,10 @@ export function Features() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 lg:py-32 bg-[#0a0a0a] overflow-hidden"
+      className="relative py-24 lg:py-32 bg-[#1b2347] overflow-hidden"
     >
       {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#111_1px,transparent_1px),linear-gradient(to_bottom,#111_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#232c55_1px,transparent_1px),linear-gradient(to_bottom,#232c55_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20" />
 
       <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
@@ -52,15 +52,15 @@ export function Features() {
               {/* Outer Glow */}
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-blue-500/30 rounded-[2.5rem] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
 
-              <div className="relative rounded-[2rem] overflow-hidden border border-white/5 bg-[#0d0d0d] p-3 shadow-2xl">
+              <div className="relative rounded-[2rem] overflow-hidden border border-white/5 bg-[#1f2850] p-3 shadow-2xl">
                 <motion.img
                   src="/images/features-lifestyle.jpg"
-                  alt="Craftsmanship"
+                  alt="Rollers Pub shop"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="w-full h-auto rounded-[1.5rem] object-cover"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700"%3E%3Crect fill="%23111" width="600" height="700"/%3E%3Ctext fill="%234ade80" font-family="sans-serif" font-size="24" font-weight="black" x="50%25" y="50%25" text-anchor="middle"%3EENGINEERING EXCELLENCE%3C/text%3E%3C/svg%3E';
+                    (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700"%3E%3Crect fill="%23111" width="600" height="700"/%3E%3Ctext fill="%234ade80" font-family="sans-serif" font-size="24" font-weight="black" x="50%25" y="50%25" text-anchor="middle"%3EROLLERS PUB%3C/text%3E%3C/svg%3E';
                   }}
                 />
               </div>
@@ -76,8 +76,8 @@ export function Features() {
                   <Sparkles className="h-6 w-6" />
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-white">10K+</div>
-                  <div className="text-[10px] text-white/50 uppercase tracking-[0.2em] font-bold">Trusted Reviews</div>
+                  <div className="text-2xl font-black text-white">Since 2013</div>
+                  <div className="text-[10px] text-white/50 uppercase tracking-[0.2em] font-bold">Dhanmondi, Dhaka</div>
                 </div>
               </motion.div>
             </div>
@@ -101,8 +101,8 @@ export function Features() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white leading-tight tracking-tighter"
               >
-                CRAFTED FOR THE <br />
-                <span className="text-white/50">ELITE ENTHUSIAST.</span>
+                GET YOUR FIX <br />
+                <span className="text-white/50">WITHOUT THE GUILT.</span>
               </motion.h2>
             </div>
 
@@ -158,9 +158,9 @@ export function Features() {
           />
           <defs>
             <linearGradient id="feature-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#4ade80" stopOpacity="0" />
-              <stop offset="50%" stopColor="#4ade80" stopOpacity="1" />
-              <stop offset="100%" stopColor="#4ade80" stopOpacity="0" />
+              <stop offset="0%" stopColor="#cea27f" stopOpacity="0" />
+              <stop offset="50%" stopColor="#cea27f" stopOpacity="1" />
+              <stop offset="100%" stopColor="#cea27f" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

@@ -43,7 +43,7 @@ export function About() {
   });
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a]">
+    <main className="min-h-screen bg-[#1b2347]">
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#1d1d1d] to-transparent" />
@@ -131,7 +131,7 @@ export function About() {
       </section>
 
       {/* Values */}
-      <section className="px-4 sm:px-6 lg:px-12 xl:px-20 py-16 bg-[#111]">
+      <section className="px-4 sm:px-6 lg:px-12 xl:px-20 py-16 bg-[#232c55]">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-display font-bold text-white mb-4">
             What We <span className="gradient-text">Stand For</span>

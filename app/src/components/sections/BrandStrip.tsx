@@ -16,7 +16,7 @@ export function BrandStrip() {
   if (brands.length === 0) return null;
 
   return (
-    <section ref={sectionRef} className="relative py-20 bg-[#050505] border-y border-white/5 overflow-hidden">
+    <section ref={sectionRef} className="relative py-20 bg-[#151c3a] border-y border-white/5 overflow-hidden">
       <div className="relative z-10 px-4 sm:px-6 lg:px-12 xl:px-20">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
           <motion.div

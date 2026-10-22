@@ -51,7 +51,7 @@ export default function Success() {
     };
 
     return (
-        <div className="min-h-screen bg-[#050505] pt-32 pb-20 px-6 overflow-hidden relative">
+        <div className="min-h-screen bg-[#151c3a] pt-32 pb-20 px-6 overflow-hidden relative">
             {/* Cinematic Background */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 blur-[120px] rounded-full opacity-20" />
@@ -71,7 +71,7 @@ export default function Success() {
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
                             transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 15 }}
-                            className="w-24 h-24 bg-primary rounded-[2.5rem] flex items-center justify-center shadow-[0_0_50px_rgba(74,222,128,0.3)]"
+                            className="w-24 h-24 bg-primary rounded-[2.5rem] flex items-center justify-center shadow-[0_0_50px_rgba(206,162,127,0.3)]"
                         >
                             <CheckCircle2 className="w-12 h-12 text-black stroke-[3px]" />
                         </motion.div>

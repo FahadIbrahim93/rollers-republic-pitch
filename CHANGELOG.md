@@ -3,6 +3,14 @@
 All notable changes to this project are documented here. Format based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased — demo cleanup (2026-10-23)
+- Removed fabricated social proof (10K+ reviews, 98%, +2.4k, 4.9/5, invented Google reviews); reviews section is now a labelled example placeholder.
+- Removed invented claims (30-day returns, global tracking, military/enterprise encryption, Certified Premium) and template copy.
+- Demo mode (default; `VITE_DEMO_MODE=false` to disable) uses the bundled catalog only: no remote fetches, no degraded banner, no console errors.
+- Bro Bear logo + navy/cream/tan palette after rollerspub.com.
+- og:image now a 1200x630 JPEG hosted on the demo; noindex everywhere, robots `Disallow: /`, public sitemap removed (route list moved to scripts/prerender-routes.xml).
+- Smaller bundle (Sentry lazy-loaded, zod/RHF only in form routes, unused deps dropped, italic fonts dropped) and recompressed images.
+
 ## [Unreleased]
 
 ### Added
