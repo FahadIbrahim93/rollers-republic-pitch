@@ -1,4 +1,9 @@
-import { testimonials as mockTestimonials, brands as mockBrands } from '../data/catalog';
+import {
+  testimonials as mockTestimonials,
+  brands as mockBrands,
+  products as bundledProducts,
+  categories as bundledCategories,
+} from '../data/catalog';
 import { useDatabaseStore } from '../store/databaseStore';
 import type { Brand, Category, Customer, Order, Product, Testimonial } from '@/types';
 
@@ -8,6 +13,8 @@ const API_DELAY = 300;
 export interface ApiHealth {
   degraded: boolean;
   lastError: Error | null;
+  /** True when the last fallback produced no data (nothing usable to show). */
+  fallbackEmpty: boolean;
   subscribe(listener: () => void): () => void;
   _notify(): void;
 }
@@ -17,6 +24,7 @@ function createApiHealth(): ApiHealth {
   return {
     degraded: false,
     lastError: null,
+    fallbackEmpty: false,
     subscribe(listener: () => void) {
       listeners.add(listener);
       return () => {
@@ -81,8 +89,17 @@ export interface Paginated<T> {
 export type ProductCard = Omit<Product, 'description' | 'specifications'> &
   Partial<Pick<Product, 'description' | 'specifications'>>;
 
-const getStoreProducts = () => useDatabaseStore.getState().products;
-const getStoreCategories = () => useDatabaseStore.getState().categories;
+// The persisted store is only seeded in DEV (see databaseStore.initializeFromSeed),
+// so in production it starts empty. Fall back to the bundled catalog whenever the
+// store has nothing, otherwise /shop renders "No Results Found".
+const getStoreProducts = (): Product[] => {
+  const stored = useDatabaseStore.getState().products;
+  return stored && stored.length > 0 ? stored : bundledProducts;
+};
+const getStoreCategories = (): Category[] => {
+  const stored = useDatabaseStore.getState().categories;
+  return stored && stored.length > 0 ? stored : bundledCategories;
+};
 const getStoreOrders = () => useDatabaseStore.getState().orders;
 const getStoreCustomers = () => useDatabaseStore.getState().customers;
 
@@ -176,6 +193,7 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
       if (apiHealth.degraded) {
         apiHealth.degraded = false;
         apiHealth.lastError = null;
+        apiHealth.fallbackEmpty = false;
         apiHealth._notify();
       }
       return result;
@@ -185,7 +203,14 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
       apiHealth._notify();
       onFallback?.(error, path);
       console.warn('Remote API unavailable, falling back to local dataset.', error);
-      return mockFn();
+      const fallback = await mockFn();
+      // A fallback that still produced data is "clean": the banner stays hidden.
+      const empty = fallback === undefined || (Array.isArray(fallback) && fallback.length === 0);
+      if (apiHealth.fallbackEmpty !== empty) {
+        apiHealth.fallbackEmpty = empty;
+        apiHealth._notify();
+      }
+      return fallback;
     }
   };
 

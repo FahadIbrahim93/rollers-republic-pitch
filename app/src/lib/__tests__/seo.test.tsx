@@ -143,7 +143,8 @@ describe('useDocumentSEO', () => {
     expect(document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href).toContain(
       '/shop',
     );
-    expect(metaContent('meta[name="robots"]')).toBe('index, follow');
+    // Site-wide noindex while this is a pitch deployment.
+    expect(metaContent('meta[name="robots"]')).toBe('noindex, nofollow');
   });
 
   it('noindex pages get noindex,nofollow', () => {

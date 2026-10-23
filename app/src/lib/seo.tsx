@@ -172,12 +172,10 @@ export function useDocumentSEO({
 
     upsertMetaTag('meta[name="description"]', { name: 'description', content: description });
     upsertMetaTag('meta[name="keywords"]', { name: 'keywords', content: keywords });
-    upsertMetaTag(
-      'meta[name="robots"]',
-      noindex
-        ? { name: 'robots', content: 'noindex, nofollow' }
-        : { name: 'robots', content: 'index, follow' },
-    );
+    // Pitch/demo deployment: the whole site is noindex (also sent as an
+    // X-Robots-Tag header in vercel.json). `noindex` is kept for API compat.
+    void noindex;
+    upsertMetaTag('meta[name="robots"]', { name: 'robots', content: 'noindex, nofollow' });
     upsertMetaTag('meta[property="og:title"]', { property: 'og:title', content: `${title} | ${siteConfig.name}` });
     upsertMetaTag('meta[property="og:description"]', { property: 'og:description', content: description });
     upsertMetaTag('meta[property="og:url"]', { property: 'og:url', content: canonicalUrl });

@@ -13,6 +13,7 @@ describe('DegradedModeBanner', () => {
   beforeEach(() => {
     apiHealth.degraded = false;
     apiHealth.lastError = null;
+    apiHealth.fallbackEmpty = false;
   });
 
   it('renders nothing when healthy', () => {
@@ -20,9 +21,20 @@ describe('DegradedModeBanner', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('appears when the API has degraded to local fallback', () => {
+  it('stays hidden when the fallback to the bundled catalog is clean', () => {
     act(() => {
       apiHealth.degraded = true;
+      apiHealth.fallbackEmpty = false;
+      apiHealth._notify();
+    });
+    const { container } = render(<DegradedModeBanner />);
+    expect(container.firstChild).toBeNull();
+  });
+
+  it('appears when the API degraded and the fallback had no data', () => {
+    act(() => {
+      apiHealth.degraded = true;
+      apiHealth.fallbackEmpty = true;
       apiHealth._notify();
     });
     render(<DegradedModeBanner />);
@@ -33,6 +45,7 @@ describe('DegradedModeBanner', () => {
   it('disappears after recovery (degraded flips back to false)', () => {
     act(() => {
       apiHealth.degraded = true;
+      apiHealth.fallbackEmpty = true;
       apiHealth._notify();
     });
     const { rerender } = render(<DegradedModeBanner />);
