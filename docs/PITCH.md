@@ -14,7 +14,7 @@ design that finally matches the quality of what you sell. It's ready to demo tod
 
 ## Live demo
 
-> **https://rollers-republic.vercel.app** — live now, serving a snapshot of your real
+> **https://rollers-republic-pitch.vercel.app** — live now, serving a snapshot of your real
 > catalog: RAW, Elements, Juicy Jays, OCB, Phoenix, G-RollZ and 77 more brands.
 
 > **Self-contained HTML version:** this proposal also exists as a single shareable file

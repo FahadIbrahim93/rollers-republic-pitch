@@ -82,7 +82,7 @@ separate host.
 vercel --prod
 ```
 
-The live reference: `https://rollers-republic.vercel.app/api/products` (200 + JSON).
+The live reference: `https://rollers-republic-pitch.vercel.app/api/products` (200 + JSON).
 
 > **Honest limitation:** serverless = in-memory. Catalog reads (products,
 > categories, testimonials, search) are fully functional. Writes (register,

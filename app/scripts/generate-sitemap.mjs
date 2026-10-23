@@ -29,7 +29,7 @@ const rootDir = resolve(appDir, '..');
 const outFile = resolve(appDir, 'public/sitemap.xml');
 
 const SITE_URL =
-  process.env.SITE_URL || 'https://rollers-republic.vercel.app';
+  process.env.SITE_URL || 'https://rollers-republic-pitch.vercel.app';
 
 // --- Load the canonical catalog (server/seed.json is the SSOT) ---
 const seed = JSON.parse(readFileSync(resolve(rootDir, 'server', 'seed.json'), 'utf8'));

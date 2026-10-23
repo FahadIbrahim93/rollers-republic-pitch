@@ -5,13 +5,13 @@
 [![Stack](https://img.shields.io/badge/React%2019%20·%20TS%20strict%20·%20Vite%207-2b2b2b?logo=react)](docs/ARCHITECTURE.md)
 [![Tests](https://img.shields.io/badge/tests-212%20passing-2ECC71)](#quality-gates)
 [![A11y](https://img.shields.io/badge/WCAG%202.1%20AA%20·%20axe%20clean-D4AF37)](#quality-gates)
-[![Live](https://img.shields.io/badge/live-rollers--republic.vercel.app-black?logo=vercel)](https://rollers-republic.vercel.app)
+[![Live](https://img.shields.io/badge/live-rollers--republic--pitch.vercel.app-black?logo=vercel)](https://rollers-republic-pitch.vercel.app)
 
 Production e-commerce storefront for **Rollers Republic** (rollerspub.com) — Bangladesh's
 pioneering headshop since 2013. Rolling papers, blunts, filter tips, waterpipes & bongs,
 vapes and munchies — imported from the UK with same-day Dhaka delivery.
 
-**Live demo:** https://rollers-republic.vercel.app
+**Live demo:** https://rollers-republic-pitch.vercel.app
 
 > **For AI coders:** read [`docs/SSOT.md`](docs/SSOT.md) **first**. It is the single source
 > of truth for business facts, design system, data pipeline, and the Definition of Done.
