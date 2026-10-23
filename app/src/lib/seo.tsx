@@ -15,7 +15,7 @@ interface SEOConfig {
 }
 
 const SITE_URL =
-  import.meta.env.VITE_SITE_URL || 'https://rollers-republic.vercel.app';
+  import.meta.env.VITE_SITE_URL || 'https://rollers-republic-pitch.vercel.app';
 
 const upsertMetaTag = (selector: string, attributes: Record<string, string>) => {
   let tag = document.head.querySelector<HTMLMetaElement>(selector);

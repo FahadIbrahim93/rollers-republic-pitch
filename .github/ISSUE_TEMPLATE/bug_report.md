@@ -26,7 +26,7 @@ If applicable, add screenshots or paste any browser console errors.
 - Device: [e.g. iPhone 15, Desktop]
 - Browser: [e.g. Chrome 131, Safari 18]
 - Node version: [e.g. 20.11.0]
-- Deployment: [e.g. local dev, rollers-republic.vercel.app]
+- Deployment: [e.g. local dev, rollers-republic-pitch.vercel.app]
 
 **Additional context**
 Add any other context about the problem here.
