@@ -376,3 +376,25 @@ describe('api client — remote path (injectable factory)', () => {
     expect(testimonials.length).toBeGreaterThan(0);
   });
 });
+
+describe('bundled catalog fallback (empty store, production)', () => {
+  it('serves the bundled catalog when the persisted store is empty', async () => {
+    const { useDatabaseStore } = await import('@/store/databaseStore');
+    const { products: bundled } = await import('@/data/catalog');
+    useDatabaseStore.setState({ products: [], categories: [] });
+    const client = createApiClient({ useRemote: false });
+    const list = await client.products.getAllCard();
+    expect(list.length).toBe(bundled.length);
+    expect(list.length).toBeGreaterThan(0);
+    expect((await client.categories.getAll()).length).toBeGreaterThan(0);
+  });
+
+  it('falls back cleanly (no banner flag) when the remote API fails', async () => {
+    const { useDatabaseStore } = await import('@/store/databaseStore');
+    useDatabaseStore.setState({ products: [] });
+    const client = createApiClient({ useRemote: true, fetchImpl: (() => Promise.reject(new Error('down'))) as typeof fetch });
+    const list = await client.products.getAllCard();
+    expect(list.length).toBeGreaterThan(0);
+    expect(apiHealth.fallbackEmpty).toBe(false);
+  });
+});

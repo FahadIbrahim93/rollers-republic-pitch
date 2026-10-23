@@ -13,7 +13,13 @@ import { apiHealth } from '@/lib/api';
  * the client has actually degraded. Hidden entirely in local mode.
  */
 export function DegradedModeBanner() {
-  const degraded = useSyncExternalStore(apiHealth.subscribe, () => apiHealth.degraded, () => false);
+  // Only surface the banner when the fallback could not serve data. A clean
+  // fallback to the bundled catalog is a fully working store, so no banner.
+  const degraded = useSyncExternalStore(
+    apiHealth.subscribe,
+    () => apiHealth.degraded && apiHealth.fallbackEmpty,
+    () => false,
+  );
 
   if (!degraded) {
     return null;

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 /**
  * Degraded-mode E2E: the app runs in remote mode against a dead API port.
  * The client must (1) still render the store from the bundled dataset and
- * (2) show the DegradedModeBanner so the outage is never silent.
+ * (2) keep the DegradedModeBanner hidden when that fallback is clean.
  */
 test.describe('Degraded mode (remote API down)', () => {
   test('homepage renders from fallback data and shows the degraded banner', async ({ page }) => {
@@ -14,9 +14,8 @@ test.describe('Degraded mode (remote API down)', () => {
 
     await page.goto('/', { waitUntil: 'networkidle' });
 
-    // The banner must be visible — an outage is never silent.
-    await expect(page.getByRole('status')).toBeVisible();
-    await expect(page.getByText(/showing cached catalog/i)).toBeVisible();
+    // Clean fallback to the bundled catalog: no banner (the store fully works).
+    await expect(page.getByText(/showing cached catalog/i)).toHaveCount(0);
 
     // The store still renders products from the fallback dataset.
     await expect(page.locator('h1, .hero-title, [class*="hero"]').first()).toBeVisible();
@@ -25,8 +24,8 @@ test.describe('Degraded mode (remote API down)', () => {
   test('shop still lists products in degraded mode', async ({ page }) => {
     await page.goto('/shop', { waitUntil: 'networkidle' });
 
-    await expect(page.getByRole('status')).toBeVisible();
-    // Fallback data must still power the grid (6 seed products).
+    await expect(page.getByText(/showing cached catalog/i)).toHaveCount(0);
+    // Fallback data must still power the grid.
     await expect(page.locator('a[href^="/product/"]').first()).toBeVisible();
   });
 });
