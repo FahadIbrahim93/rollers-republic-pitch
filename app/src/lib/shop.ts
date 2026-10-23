@@ -12,11 +12,31 @@ export function resolveCategoryIdFromSlug(categories: Category[], selectedCatego
   return categories.find((category) => category.slug === selectedCategorySlug)?.id ?? null;
 }
 
-export function filterProducts(products: ProductCard[], selectedCategoryId: string | null, searchQuery: string): ProductCard[] {
+/**
+ * Every value a product's `categoryId` may legitimately hold for the selected
+ * category. The seed (and therefore the bundled catalog and the API) stores the
+ * category SLUG in `product.categoryId` (e.g. "rolling-papers"), while
+ * `category.id` is numeric ("1"), so matching on id alone yields 0 results.
+ */
+export function resolveCategoryKeysFromSlug(categories: Category[], selectedCategorySlug: string): string[] | null {
+  if (selectedCategorySlug === 'all') {
+    return null;
+  }
+  const category = categories.find((c) => c.slug === selectedCategorySlug);
+  // Unknown slug (e.g. categories not loaded yet): still try the slug itself.
+  return category ? [category.id, category.slug] : [selectedCategorySlug];
+}
+
+export function filterProducts(
+  products: ProductCard[],
+  selectedCategory: string | string[] | null,
+  searchQuery: string,
+): ProductCard[] {
   const normalizedQuery = searchQuery.trim().toLowerCase();
+  const categoryKeys = selectedCategory === null ? null : Array.isArray(selectedCategory) ? selectedCategory : [selectedCategory];
 
   return products.filter((product) => {
-    const matchesCategory = selectedCategoryId === null || product.categoryId === selectedCategoryId;
+    const matchesCategory = categoryKeys === null || categoryKeys.includes(product.categoryId);
     if (!normalizedQuery) {
       return matchesCategory;
     }

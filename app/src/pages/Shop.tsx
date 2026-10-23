@@ -8,7 +8,7 @@ import { Search, SlidersHorizontal, ChevronDown, SearchX } from 'lucide-react';
 import { useProducts, useCategories, useBrands } from '@/hooks/useApi';
 import { useCartStore } from '@/store/cartStore';
 import { cn } from '@/lib/utils';
-import { filterProducts, getNextVisibleCount, getVisibleProducts, INITIAL_VISIBLE_PRODUCTS, resolveCategoryIdFromSlug, sortProducts } from '@/lib/shop';
+import { filterProducts, getNextVisibleCount, getVisibleProducts, INITIAL_VISIBLE_PRODUCTS, resolveCategoryIdFromSlug, resolveCategoryKeysFromSlug, sortProducts } from '@/lib/shop';
 import { Footer } from '@/components/layout/Footer';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -86,9 +86,11 @@ export function Shop() {
     return products.filter((p) => p.brandSlug === selectedBrandSlug);
   }, [products, selectedBrandSlug]);
 
+  const selectedCategoryKeys = useMemo(() => resolveCategoryKeysFromSlug(categories, selectedCategory), [categories, selectedCategory]);
+
   const filteredProducts = useMemo(() => {
-    return filterProducts(brandFiltered, selectedCategoryId, searchQuery);
-  }, [brandFiltered, selectedCategoryId, searchQuery]);
+    return filterProducts(brandFiltered, selectedCategoryKeys, searchQuery);
+  }, [brandFiltered, selectedCategoryKeys, searchQuery]);
 
   const sortedProducts = useMemo(() => {
     return sortProducts(filteredProducts, sortBy);
