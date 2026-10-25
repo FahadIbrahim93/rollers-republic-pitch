@@ -20,6 +20,8 @@ export interface SiteConfig {
   phone: string;
   /** Secondary phone */
   phoneAlt?: string;
+  /** Number shown in the site-wide 'Express delivery — call' banner. */
+  expressDeliveryPhone: string;
   /** WhatsApp order number, international format without + (e.g. 8801711626210). */
   whatsappNumber: string;
   /** Show login/sign-up entry points. */
@@ -127,6 +129,7 @@ export const siteConfig: SiteConfig = {
   /** Account (login/sign-up) UI is hidden for the guest WhatsApp checkout; code is kept. */
   showAccountUi: false,
   phoneAlt: '01711626205',
+  expressDeliveryPhone: '01330005300',
   address: 'Plaza A.R, Dhanmondi-28, Ground floor, Shop 108, Dhaka 1207',
   outlets: [
     {

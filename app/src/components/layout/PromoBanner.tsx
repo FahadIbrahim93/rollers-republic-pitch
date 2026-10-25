@@ -15,8 +15,8 @@ export function PromoBanner() {
         <Truck className="w-3 h-3 animate-pulse" aria-hidden="true" />
         <span>
           Express delivery — order online then call{' '}
-          <a href={`tel:${siteConfig.phone}`} className="underline underline-offset-2">
-            {siteConfig.phone}
+          <a href={`tel:${siteConfig.expressDeliveryPhone}`} className="underline underline-offset-2">
+            {siteConfig.expressDeliveryPhone}
           </a>{' '}
           · Same day in Dhaka
         </span>
