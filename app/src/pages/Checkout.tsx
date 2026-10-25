@@ -409,8 +409,9 @@ export function Checkout() {
                     <div className="space-y-6">
                       {step < 3 ? (
                         <Button
+                          key="next-step"
                           type="button"
-                          onClick={nextStep}
+                          onClick={(e) => { e.preventDefault(); void nextStep(); }}
                           className="w-full h-16 rounded-2xl bg-white text-black hover:bg-primary transition-all duration-500 font-black text-lg shadow-xl active:scale-[0.98] group/nav"
                         >
                           Next Phase
@@ -418,6 +419,7 @@ export function Checkout() {
                         </Button>
                       ) : (
                         <Button
+                          key="submit-order"
                           type="submit"
                           disabled={isProcessing}
                           className="w-full h-16 rounded-2xl bg-primary text-black hover:bg-white transition-all duration-500 font-black text-lg shadow-[0_0_40px_rgba(74,222,128,0.2)] disabled:opacity-50"
