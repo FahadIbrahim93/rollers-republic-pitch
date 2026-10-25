@@ -28,7 +28,7 @@ design that finally matches the quality of what you sell. It's ready to demo tod
 | **Your real catalog** | 949 products, 8 categories, 83 brands — snapshotted from your own store, prices in ৳ |
 | **Static-prerendered** | 484 routes build to real HTML — content, prices and product data arrive in the first response, no JavaScript required |
 | **18+ Age Gate** | Adult verification on entry, with a compliance-ready age policy page |
-| **Built for your sales flow** | "Order online → call 01330005300" express-delivery banner, WhatsApp ordering, bKash + Cash on Delivery |
+| **Built for your sales flow** | "Order online → call 01711626210" express-delivery banner, WhatsApp ordering, bKash + Cash on Delivery |
 | **Both outlets on the map** | Dhanmondi flagship + Mirpur with Google Maps directions |
 | **Shop by brand** | Dedicated brand pages — a thing your current site can't do |
 | **Search & filters** | Instant search, category + brand + price filtering, sorting |

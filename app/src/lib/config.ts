@@ -20,6 +20,10 @@ export interface SiteConfig {
   phone: string;
   /** Secondary phone */
   phoneAlt?: string;
+  /** WhatsApp order number, international format without + (e.g. 8801711626210). */
+  whatsappNumber: string;
+  /** Show login/sign-up entry points. */
+  showAccountUi: boolean;
   /** Business address */
   address: string;
   /** Physical outlets (SSOT §2) */
@@ -117,7 +121,11 @@ export const siteConfig: SiteConfig = {
     'rollers pub',
   ],
   email: 'hello@rollerspub.com',
-  phone: '01330005300',
+  phone: '01711626210',
+  /** WhatsApp order line, international format without + (used for wa.me links). */
+  whatsappNumber: '8801711626210',
+  /** Account (login/sign-up) UI is hidden for the guest WhatsApp checkout; code is kept. */
+  showAccountUi: false,
   phoneAlt: '01711626205',
   address: 'Plaza A.R, Dhanmondi-28, Ground floor, Shop 108, Dhaka 1207',
   outlets: [
@@ -134,7 +142,7 @@ export const siteConfig: SiteConfig = {
   ],
   social: {
     facebook: 'https://www.facebook.com/RollersRepublic',
-    whatsapp: 'https://wa.me/8801330005300',
+    whatsapp: 'https://wa.me/8801711626210',
   },
   footerText: `© ${new Date().getFullYear()} Rollers Republic. All rights reserved.`,
 };

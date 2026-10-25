@@ -18,15 +18,17 @@ const paymentMethods = [
   },
   { 
     id: 'bkash', 
-    label: 'bKash', 
+    label: 'bKash — Coming soon', 
     icon: Smartphone,
-    description: 'Pay via bKash'
+    description: 'Not available yet',
+    disabled: true
   },
   { 
     id: 'nagad', 
-    label: 'Nagad', 
+    label: 'Nagad — Coming soon', 
     icon: Smartphone,
-    description: 'Pay via Nagad'
+    description: 'Not available yet',
+    disabled: true
   },
 ];
 
@@ -57,7 +59,7 @@ export function PaymentMethodSelector({ register, errors, watch }: PaymentMethod
                 : 'border-white/10 hover:border-white/20'
             }`}
           >
-            <RadioGroupItem value={method.id} id={method.id} className="sr-only" />
+            <RadioGroupItem value={method.id} id={method.id} disabled={"disabled" in method && method.disabled} className="sr-only" />
             <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
               selectedMethod === method.id ? 'bg-emerald-500 text-white' : 'bg-white/10 text-white/60'
             }`}>
