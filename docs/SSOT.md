@@ -46,7 +46,7 @@ future agent needs a NEW business fact, it must be verified the same way — nev
 | Positioning | Bangladesh-based online smoke shop; 100% authentic, imported quality; community/"brotherhood" brand voice |
 | Outlets | **Dhanmondi flagship** — Plaza A.R, Dhanmondi-28, Ground floor, Shop 108, Dhaka 1207 (verified on their contact page 2026-10-06). **Second outlet: UNCONFIRMED** — their Instagram says Basundhara, a Facebook post says Mirpur. Do not name it in copy or structured data until the client confirms. |
 | Pickup | Free pickup at Dhanmondi 2/A |
-| Phones | **01330005300** (express delivery line, shown site-wide) · **01711626205** (official site, verified 2026-10-06; config previously had a wrong final digit) |
+| Phones | **01711626210** (WhatsApp order line; changed from 01330005300 on 2026-10-25) · **01330005300** (express delivery call banner, kept per Fahad) · **01711626205** (official site, verified 2026-10-06; config previously had a wrong final digit) |
 | Social | https://www.facebook.com/RollersRepublic (very active; bilingual EN/BN posts, product price posts) |
 | Sales model | Order online → call for express delivery; same-day delivery in Dhaka; bKash + cash-on-delivery friendly |
 | Mascot | **"Bro Bear"** — "Best Sellers and Bro Bear Recommended" |
@@ -112,7 +112,7 @@ Changing the client's mind later = editing these two files only.
 - `TrustBadges` — 100% Authentic · Imported from UK · Same-day Dhaka delivery · Google reviews strip
 - `BrandStrip` — horizontal scroll of brand logos/names linking to `/shop?brand=X`
 - `BroBearPicks` — "Recommended by Bro Bear" ribbon + curated row (reuses FeaturedProducts pattern, filters `tag: 'bro-bear'`)
-- `ExpressDeliveryBanner` — top banner: "🚚 Express delivery — order online then call 📞 01330005300. Same day in Dhaka." (links `tel:`)
+- `ExpressDeliveryBanner` — top banner: "🚚 Express delivery — order online then call 📞 01711626210. Same day in Dhaka." (links `tel:`)
 - `OutletCard` — used in `/contact`: name, address, phone, hours, "Get directions" Google Maps link
 
 **Accessibility is non-negotiable** — template rules apply verbatim: icon buttons need
@@ -184,7 +184,7 @@ by hand. Product images are served through the same-origin `/img/*` proxy or fro
 ALL client-specific values live in **`app/src/lib/config.ts`**:
 `siteConfig` (name: **Rollers Republic**, tagline: "Smoking Headshop · Imported from UK",
 email `hello@rollerspub.com` [placeholder — confirm with client], phones from §2,
-social: facebook only for v1 + WhatsApp `https://wa.me/8801330005300`), `brandConfig`
+social: facebook only for v1 + WhatsApp `https://wa.me/8801711626210`), `brandConfig`
 (colors per §5, hero copy), `commerceConfig`, `features` (add `blog: boolean`, `ageGate: true`).
 
 Components read config — **never hardcode** business strings in components. If you find

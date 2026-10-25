@@ -13,7 +13,7 @@ export function Home() {
   useDocumentSEO({
     title: 'Smoking Headshop · Rolling Papers, Bongs & Vapes in Dhaka',
     description:
-      '100% authentic rolling papers, blunts, filter tips, waterpipes, bongs and vapes imported from the UK. Same-day delivery in Dhaka — order online then call 01330005300.',
+      '100% authentic rolling papers, blunts, filter tips, waterpipes, bongs and vapes imported from the UK. Same-day delivery in Dhaka — order online then call 01711626210.',
     canonicalPath: '/',
     keywords:
       'rolling paper bangladesh, bong bd, vape dhaka, RAW bangladesh, smoking headshop dhaka, rollers republic, rollers pub',

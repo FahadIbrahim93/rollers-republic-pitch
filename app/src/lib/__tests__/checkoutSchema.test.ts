@@ -65,11 +65,27 @@ describe('checkoutSchema', () => {
     }
   });
 
-  it('accepts all supported payment methods', () => {
-    for (const method of ['cod', 'bkash', 'nagad'] as const) {
-      const result = checkoutSchema.safeParse({ ...validOrder, paymentMethod: method });
-      expect(result.success).toBe(true);
+  it('accepts cash on delivery only; bKash/Nagad are coming soon', () => {
+    expect(checkoutSchema.safeParse({ ...validOrder, paymentMethod: 'cod' }).success).toBe(true);
+    for (const method of ['bkash', 'nagad'] as const) {
+      expect(checkoutSchema.safeParse({ ...validOrder, paymentMethod: method }).success).toBe(false);
     }
+  });
+
+  it('accepts Bangladeshi mobile formats and rejects others', () => {
+    for (const phone of ['01712345678', '+8801712345678', '8801712345678', '017-1234-5678', '01912 345678']) {
+      expect(checkoutSchema.safeParse({ ...validOrder, phone }).success).toBe(true);
+    }
+    for (const phone of ['0171234567', '01212345678', '+447700900123', '021234567890']) {
+      expect(checkoutSchema.safeParse({ ...validOrder, phone }).success).toBe(false);
+    }
+  });
+
+  it('allows guest checkout without email or postal code', () => {
+    expect(checkoutSchema.safeParse({ ...validOrder, email: '', postalCode: '' }).success).toBe(true);
+    const { email: _e, postalCode: _p, ...rest } = validOrder;
+    void _e; void _p;
+    expect(checkoutSchema.safeParse(rest).success).toBe(true);
   });
 
   it('rejects missing required fields', () => {

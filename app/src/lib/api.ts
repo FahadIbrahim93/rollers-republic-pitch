@@ -358,17 +358,15 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
 
         if (!useRemote) {
           useDatabaseStore.getState().addOrder(newOrder);
+          return newOrder;
         }
 
-        return withFallback<Order>(
-          () =>
-            fetchJson('/orders', {
-              method: 'POST',
-              body: JSON.stringify(order),
-            }),
-          async () => newOrder,
-          '/orders',
-        );
+        // No silent fallback: a failed remote order must surface as an error,
+        // never as a fake "order placed".
+        return fetchJson<Order>('/orders', {
+          method: 'POST',
+          body: JSON.stringify(order),
+        });
       },
     },
 

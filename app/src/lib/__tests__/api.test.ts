@@ -362,6 +362,17 @@ describe('api client — remote path (injectable factory)', () => {
     expect(fetchMock).toHaveBeenCalledWith('http://api.test/orders', expect.objectContaining({ method: 'POST' }));
   });
 
+  it('orders.create rejects (no fake success) when the remote API fails', async () => {
+    const fetchMock = vi.fn(async () => { throw new Error('network down'); });
+    const api = createApiClient({ useRemote: true, baseUrl: 'http://api.test', fetchImpl: fetchMock as unknown as typeof fetch });
+    await expect(api.orders.create({
+      customerId: 'u1', customerName: 'Test User',
+      items: [{ productId: 'p1', name: 'Test Grinder', quantity: 1, price: 1500, image: '/x.jpg' }],
+      total: 1500, paymentMethod: 'cod', status: 'pending', paymentStatus: 'pending',
+      shippingAddress: { name: 'Test User', phone: '01700000000', address: 'Dhaka', city: 'Dhaka' },
+    })).rejects.toThrow();
+  });
+
   it('payment.getMethods returns the static list', async () => {
     const api = createApiClient({ useRemote: false });
     const methods = await api.payment.getMethods();

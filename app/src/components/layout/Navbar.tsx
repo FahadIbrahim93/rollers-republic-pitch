@@ -1,3 +1,4 @@
+import { siteConfig } from '@/lib/config';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -210,7 +211,7 @@ export function Navbar() {
                       )}
                     </AnimatePresence>
                   </div>
-                ) : (
+                ) : siteConfig.showAccountUi && (
                   <Button
                     asChild
                     variant="ghost"
@@ -283,9 +284,11 @@ export function Navbar() {
                 <Globe className="w-4 h-4 text-primary" />
                 <span className="text-[10px] font-black uppercase tracking-widest">Same-Day Delivery</span>
               </div>
+              {siteConfig.showAccountUi && (
               <Button asChild className="rounded-full bg-white text-black font-black px-8">
                 <Link to="/login" onClick={() => setIsMobileMenuOpen(false)}>LOGIN</Link>
               </Button>
+              )}
             </div>
           </motion.div>
         )}

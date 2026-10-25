@@ -23,14 +23,14 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
-import { toast } from 'sonner';
+import { buildOrderMessage, buildWhatsAppUrl, guestCustomerId, openWhatsApp } from '@/lib/whatsappOrder';
 
 export function Checkout() {
   const items = useCartStore((state) => state.items);
   const totalPrice = useCartStore((state) => state.totalPrice);
   useDocumentSEO({
     title: 'Checkout',
-    description: 'Complete your order — bKash or Cash on Delivery, same-day Dhaka delivery.',
+    description: 'Order on WhatsApp — Cash on Delivery, same-day Dhaka delivery.',
     canonicalPath: '/checkout',
     noindex: true,
   });
@@ -38,6 +38,7 @@ export function Checkout() {
   const [step, setStep] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [whatsAppUrl, setWhatsAppUrl] = useState<string | null>(null);
   const user = useAuthStore((state) => state.user);
   const createOrderMutation = useCreateOrder();
 
@@ -57,44 +58,47 @@ export function Checkout() {
     name: 'city',
   });
 
-  const processOrder = async (data: CheckoutForm) => {
+  const processOrder = (data: CheckoutForm) => {
     setIsProcessing(true);
-
     const customerName = `${data.firstName} ${data.lastName}`.trim();
+    const address = [data.address, data.city, data.postalCode].filter(Boolean).join(', ');
+    const message = buildOrderMessage(
+      items.map((i) => ({ name: i.name, quantity: i.quantity, price: i.price })),
+      { name: customerName, phone: data.phone, address },
+    );
+    const url = buildWhatsAppUrl(message);
 
-    try {
-      await createOrderMutation.mutateAsync({
-        customerId: user?.id ?? `guest-${Date.now()}`,
-        customerName,
-        total: totalPrice,
-        status: 'pending',
-        paymentStatus: 'pending',
-        paymentMethod: data.paymentMethod,
-        items: items.map((item) => ({
-          productId: item.productId,
-          name: item.name,
-          quantity: item.quantity,
-          price: item.price,
-          image: item.image,
-        })),
-        shippingAddress: {
-          name: customerName,
-          address: data.address,
-          city: data.city,
-          phone: data.phone,
-          zone: city || undefined,
-        },
-      });
+    // Synchronous, inside the submit handler (user tap) so it is not popup-blocked.
+    openWhatsApp(url);
 
-      setIsComplete(true);
-      clearCart();
-      toast.success('Order placed successfully.');
-    } catch (error) {
-      console.error('Order processing failed:', error);
-      toast.error('Order failed. Please try again.');
-    } finally {
-      setIsProcessing(false);
-    }
+    // Best-effort local record of the order; never blocks or fakes the confirmation.
+    createOrderMutation.mutate({
+      customerId: user?.id ?? guestCustomerId(),
+      customerName,
+      total: totalPrice,
+      status: 'pending',
+      paymentStatus: 'pending',
+      paymentMethod: 'cod',
+      items: items.map((item) => ({
+        productId: item.productId,
+        name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+        image: item.image,
+      })),
+      shippingAddress: {
+        name: customerName,
+        address: data.address,
+        city: data.city,
+        phone: data.phone,
+        zone: city || undefined,
+      },
+    }, { onError: (error) => console.warn('Order record not saved (WhatsApp order still opened):', error) });
+
+    setWhatsAppUrl(url);
+    setIsComplete(true);
+    clearCart();
+    setIsProcessing(false);
   };
 
   const nextStep = async () => {
@@ -139,12 +143,18 @@ export function Checkout() {
             <Check className="w-12 h-12 text-black stroke-[3px]" />
           </div>
           <div className="space-y-4">
-            <h1 className="text-5xl font-display font-black text-white tracking-tighter">Order Confirmed</h1>
-            <p className="text-white/60 text-xl font-light leading-relaxed">
-              Your acquisition has been logged. Our logistics team is preparing your premium items for dispatch.
+            <h1 className="text-4xl font-display font-black text-white tracking-tighter">Almost done</h1>
+            <p className="text-white/70 text-xl font-light leading-relaxed" data-testid="wa-confirmation">
+              We opened WhatsApp with your order — tap Send to confirm.
             </p>
+            <p className="text-white/50 text-sm">Your order is only confirmed once we receive your WhatsApp message. Payment: Cash on delivery.</p>
           </div>
-          <div className="pt-6 border-t border-white/5">
+          <div className="pt-6 border-t border-white/5 space-y-4">
+            {whatsAppUrl && (
+              <Button asChild size="lg" className="w-full h-16 rounded-2xl bg-[#25D366] text-black hover:bg-white transition-all font-black text-lg">
+                <a href={whatsAppUrl} target="_blank" rel="noopener noreferrer">Open WhatsApp again</a>
+              </Button>
+            )}
             <Button asChild size="lg" className="w-full h-16 rounded-2xl bg-primary text-black hover:bg-white transition-all font-black text-lg">
               <Link to="/shop">View More Artifacts</Link>
             </Button>
@@ -224,7 +234,7 @@ export function Checkout() {
                             {errors.lastName && <p className="text-red-500/80 text-[10px] uppercase font-bold tracking-wider ml-1">{errors.lastName.message}</p>}
                           </div>
                           <div className="sm:col-span-2 space-y-3">
-                            <Label htmlFor="email" className="text-xs uppercase tracking-widest text-white/60 font-bold ml-1">Secure Email</Label>
+                            <Label htmlFor="email" className="text-xs uppercase tracking-widest text-white/60 font-bold ml-1">Email (optional)</Label>
                             <Input id="email" {...register('email')} type="email" placeholder="john@example.com" className="h-14 bg-white/[0.03] border-white/10 rounded-2xl focus-visible:ring-primary/20 text-white" />
                             {errors.email && <p className="text-red-500/80 text-[10px] uppercase font-bold tracking-wider ml-1">{errors.email.message}</p>}
                           </div>
@@ -244,7 +254,7 @@ export function Checkout() {
                             {errors.city && <p className="text-red-500/80 text-[10px] uppercase font-bold tracking-wider ml-1">{errors.city.message}</p>}
                           </div>
                           <div className="space-y-3">
-                            <Label htmlFor="postalCode" className="text-xs uppercase tracking-widest text-white/60 font-bold ml-1">Postal Code</Label>
+                            <Label htmlFor="postalCode" className="text-xs uppercase tracking-widest text-white/60 font-bold ml-1">Postal Code (optional)</Label>
                             <Input id="postalCode" {...register('postalCode')} placeholder="1212" className="h-14 bg-white/[0.03] border-white/10 rounded-2xl focus-visible:ring-primary/20 text-white" />
                             {errors.postalCode && <p className="text-red-500/80 text-[10px] uppercase font-bold tracking-wider ml-1">{errors.postalCode.message}</p>}
                           </div>
@@ -272,21 +282,23 @@ export function Checkout() {
                           className="grid gap-4"
                         >
                           {[
-                            { id: 'cod', label: 'Cash on Delivery', desc: 'Secure liquid transaction upon arrival', icon: Truck },
-                            { id: 'bkash', label: 'bKash Merchant', desc: 'Instant mobile acquisition via bKash', icon: CardIcon },
-                            { id: 'nagad', label: 'Nagad Terminal', desc: 'Digital finance processing via Nagad', icon: ShieldCheck }
+                            { id: 'cod', label: 'Cash on Delivery', desc: 'Pay when your order arrives', icon: Truck, disabled: false },
+                            { id: 'bkash', label: 'bKash — Coming soon', desc: 'Not available yet', icon: CardIcon, disabled: true },
+                            { id: 'nagad', label: 'Nagad — Coming soon', desc: 'Not available yet', icon: ShieldCheck, disabled: true }
                           ].map((pm) => (
                             <Label
                               key={pm.id}
                               htmlFor={pm.id}
+                              aria-disabled={pm.disabled || undefined}
                               className={cn(
-                                "flex items-center gap-6 p-8 rounded-3xl border transition-all cursor-pointer group",
+                                "flex items-center gap-6 p-8 rounded-3xl border transition-all group",
+                                pm.disabled ? "opacity-40 cursor-not-allowed" : "cursor-pointer",
                                 paymentMethod === pm.id
                                   ? "bg-primary/5 border-primary shadow-[0_0_30px_rgba(74,222,128,0.05)]"
                                   : "bg-white/[0.02] border-white/5 hover:border-white/20"
                               )}
                             >
-                              <RadioGroupItem value={pm.id} id={pm.id} className="sr-only" />
+                              <RadioGroupItem value={pm.id} id={pm.id} disabled={pm.disabled} className="sr-only" />
                               <div className={cn(
                                 "w-14 h-14 rounded-2xl flex items-center justify-center transition-colors duration-500",
                                 paymentMethod === pm.id ? "bg-primary text-black" : "bg-white/5 text-white/50 group-hover:bg-white/10 group-hover:text-white"
@@ -397,8 +409,9 @@ export function Checkout() {
                     <div className="space-y-6">
                       {step < 3 ? (
                         <Button
+                          key="next-step"
                           type="button"
-                          onClick={nextStep}
+                          onClick={(e) => { e.preventDefault(); void nextStep(); }}
                           className="w-full h-16 rounded-2xl bg-white text-black hover:bg-primary transition-all duration-500 font-black text-lg shadow-xl active:scale-[0.98] group/nav"
                         >
                           Next Phase
@@ -406,17 +419,18 @@ export function Checkout() {
                         </Button>
                       ) : (
                         <Button
+                          key="submit-order"
                           type="submit"
                           disabled={isProcessing}
                           className="w-full h-16 rounded-2xl bg-primary text-black hover:bg-white transition-all duration-500 font-black text-lg shadow-[0_0_40px_rgba(74,222,128,0.2)] disabled:opacity-50"
                         >
-                          {isProcessing ? 'Processing Securely...' : 'Authorize Transaction'}
+                          {isProcessing ? 'Opening WhatsApp...' : 'Order on WhatsApp'}
                         </Button>
                       )}
 
                       <div className="flex items-center justify-center gap-2 text-white/50">
                         <Lock className="w-3 h-3" />
-                        <span className="text-[10px] uppercase font-bold tracking-widest">End-to-End Encryption Active</span>
+                        <span className="text-[10px] uppercase font-bold tracking-widest">Guest checkout · No account needed</span>
                       </div>
                     </div>
 
