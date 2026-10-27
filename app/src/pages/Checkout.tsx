@@ -433,16 +433,6 @@ export function Checkout() {
                         <span className="text-[10px] uppercase font-bold tracking-widest">Guest checkout · No account needed</span>
                       </div>
                     </div>
-
-                    {/* Security Trust Vector */}
-                    <div className="mt-12 p-6 bg-white/[0.03] border border-white/5 rounded-2xl flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                        <ShieldCheck className="w-5 h-5" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-xs font-black text-white uppercase tracking-tight">Purchase Integrity</p>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
