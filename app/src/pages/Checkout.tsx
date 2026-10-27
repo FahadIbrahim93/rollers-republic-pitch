@@ -218,7 +218,7 @@ export function Checkout() {
                         className="space-y-10"
                       >
                         <div className="space-y-2">
-                          <h2 className="text-4xl font-display font-black text-white tracking-tighter">Shipping Architecture</h2>
+                          <h2 className="text-4xl font-display font-black text-white tracking-tighter">Delivery</h2>
                           <p className="text-white/60 font-light">Specify the destination for your acquisition.</p>
                         </div>
 
@@ -383,7 +383,7 @@ export function Checkout() {
 
                     <div className="space-y-6 mb-10">
                       <div className="flex justify-between items-center group/line">
-                        <span className="text-white/60 text-sm font-medium tracking-wide">Artifact Subtotal</span>
+                        <span className="text-white/60 text-sm font-medium tracking-wide">Subtotal</span>
                         <div className="flex-1 border-b border-white/5 mx-4 border-dotted" />
                         <span className="text-white font-bold tabular-nums tracking-tight">{formatPrice(totalPrice)}</span>
                       </div>
@@ -398,7 +398,7 @@ export function Checkout() {
                       <div className="flex justify-between items-end pt-4">
                         <div className="space-y-1">
                           <span className="text-xs uppercase font-black tracking-[0.3em] text-white/50">Final Valuation</span>
-                          <h4 className="text-white font-display text-base font-bold">Total Investment</h4>
+                          <h4 className="text-white font-display text-base font-bold">Total</h4>
                         </div>
                         <span className="text-5xl font-black text-white tracking-tighter tabular-nums drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                           {formatPrice(totalPrice)}
@@ -431,17 +431,6 @@ export function Checkout() {
                       <div className="flex items-center justify-center gap-2 text-white/50">
                         <Lock className="w-3 h-3" />
                         <span className="text-[10px] uppercase font-bold tracking-widest">Guest checkout · No account needed</span>
-                      </div>
-                    </div>
-
-                    {/* Security Trust Vector */}
-                    <div className="mt-12 p-6 bg-white/[0.03] border border-white/5 rounded-2xl flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                        <ShieldCheck className="w-5 h-5" />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-xs font-black text-white uppercase tracking-tight">Purchase Integrity</p>
-                        <p className="text-[10px] text-white/60 leading-relaxed font-light">All acquisitions are protected by our elite buyer integrity protocol and 30-day seamless reconciliation policy.</p>
                       </div>
                     </div>
                   </div>
