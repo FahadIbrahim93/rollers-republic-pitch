@@ -1,37 +1,39 @@
----
 name: Bug report
-about: Report a bug or regression in the storefront, API, or project workflow
+about: Report a bug or unexpected behavior in the app or API
 title: ""
 labels: ["bug"]
 assignees: ""
+
 ---
 
 ## Summary
-Describe the issue clearly and concisely.
+A short, clear description of the bug.
+
+## Steps to reproduce
+1. Go to...
+2. Click on...
+3. See error...
+
+## Expected behavior
+What you expected to happen.
+
+## Actual behavior
+What actually happened.
 
 ## Environment
 - OS:
 - Browser:
 - Node version:
 - Package manager:
-- Branch / commit:
+- Branch/commit:
 
-## Steps to reproduce
-1.
-2.
-3.
-
-## Expected behavior
-What should happen?
-
-## Actual behavior
-What happens instead?
+## Screenshots or logs
+Add screenshots, console output, or relevant logs here.
 
 ## Impact
-Who or what is affected?
+Describe the user or business impact.
 
-## Evidence
-Add logs, screenshots, or terminal output if helpful.
-
-## Related files / areas
-List routes, files, or modules involved.
+## Verification
+- [ ] I confirmed this issue still occurs locally
+- [ ] I checked whether a related issue already exists
+- [ ] I included enough detail for a maintainer to reproduce it

@@ -1,40 +1,43 @@
-# RollON Architecture
+# Architecture
 
 ## Overview
-RollON is a configuration-driven e-commerce template built with React, TypeScript, and Tailwind CSS. It's designed to be customizable for different businesses while maintaining a single codebase.
+This repo is organized into three runtime layers:
+- frontend storefront
+- reference API
+- production Vercel API wrapper
 
-## Core Architecture
+## Frontend
+The storefront lives in `app/` and is responsible for:
+- product browsing
+- cart and checkout flow
+- static metadata and SEO
+- account and auth flow
+- route rendering and navigation
 
-### Configuration Layer
-- `src/lib/config.ts` - Centralized site configuration
-- `.env.example` - Environment variable templates
-- `public/config.json` - Runtime configuration (optional)
+## Backend
+The reference API lives in `server/` and implements the API behavior described in `docs/API.md`.
 
-### Data Layer
-- `../../server/seed.json` - Catalog single source of truth (hand-edit here)
-- `src/data/catalog.ts` - Generated typed fallback dataset (from seed.json at build time — do not edit)
-- `src/store/` - State management (Zustand)
-- `src/lib/api.ts` - API integration layer
+## Production wrapper
+The `api/` layer provides same-origin deployment behavior for the app.
 
-### Component System
-- `src/components/ui/` - Reusable UI components
-- `src/components/layout/` - Layout components (Navbar, Footer)
-- `src/components/sections/` - Page sections (Hero, FeaturedProducts)
-- `src/components/shop/` - Shop-specific components
+## Data flow
+1. Product data originates from `server/seed.json`.
+2. Catalog output is generated for the app.
+3. The storefront reads the generated catalog or remote API responses.
+4. Checkout and account experiences rely on the same contract and state shape.
 
-### Routing
-- `src/App.tsx` - Main routing configuration
-- `src/pages/` - Page components
+## Key design principles
+- single source of truth for catalog data
+- small, domain-based modules
+- minimal cross-layer surprises
+- testable behavior
+- accessible UX
+- no fake claims or fabricated data
 
-### Styling
-- `tailwind.config.js` - Tailwind configuration
-- `src/index.css` - Global styles and CSS variables
-- Theme system via CSS custom properties
-
-## Deployment
-- Vercel recommended
-- SPA routing via `vercel.json`
-- Environment variables for configuration
-
-## Customization Guide
-See TEMPLATE_GUIDE.md for step-by-step customization instructions.
+## Folder guide
+- `app/src/pages` — route-level screens
+- `app/src/components` — reusable UI
+- `app/src/lib` — configuration, API logic, validation, SEO, utils
+- `app/src/store` — client state
+- `server/` — API implementation and seed data
+- `docs/` — architecture and contract docs

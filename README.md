@@ -1,110 +1,108 @@
-# Rollers Republic — Smoking Headshop Storefront
+# Rollers Republic
 
-[![CI](https://github.com/TamimAbir/rollers-republic/actions/workflows/ci.yml/badge.svg)](https://github.com/TamimAbir/rollers-republic/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Stack](https://img.shields.io/badge/React%2019%20·%20TS%20strict%20·%20Vite%207-2b2b2b?logo=react)](docs/ARCHITECTURE.md)
-[![Tests](https://img.shields.io/badge/tests-212%20passing-2ECC71)](#quality-gates)
-[![A11y](https://img.shields.io/badge/WCAG%202.1%20AA%20·%20axe%20clean-D4AF37)](#quality-gates)
-[![Live](https://img.shields.io/badge/live-rollers--republic--pitch.vercel.app-black?logo=vercel)](https://rollers-republic-pitch.vercel.app)
+Production e-commerce storefront for Rollers Republic.
 
-Production e-commerce storefront for **Rollers Republic** (rollerspub.com) — Bangladesh's
-pioneering headshop since 2013. Rolling papers, blunts, filter tips, waterpipes & bongs,
-vapes and munchies — imported from the UK with same-day Dhaka delivery.
-
-**Live demo:** https://rollers-republic-pitch.vercel.app
-
-> **For AI coders:** read [`docs/SSOT.md`](docs/SSOT.md) **first**. It is the single source
-> of truth for business facts, design system, data pipeline, and the Definition of Done.
-
-## Highlights
-
-- **Real catalog, not lorem ipsum** — 949 products / 83 brands / 8 categories snapshotted
-  from the client's live WooCommerce Store API into `server/seed.json`, the single
-  source of truth; the client's typed fallback dataset is derived from it at build time
-- **Static-prerendered at build** — all 484 indexable routes (477 in-stock PDPs + key
-  pages) emit real HTML with per-page titles and JSON-LD, so social scrapers and no-JS
-  clients get full content in the first response (SSOT §11 M6)
-- **100 Lighthouse accessibility**, WCAG 2.1 AA enforced by axe-core in E2E
-- **18+ AgeGate** — mandatory, persisted, compliant with adult-product rules
-- **Config-driven branding** — every business value (name, outlets, phones, payment
-  methods, socials) lives in [`app/src/lib/config.ts`](app/src/lib/config.ts)
-- **Buyer flow end to end** — brand/category filtering, search, cart, checkout with
-  bKash + Cash on Delivery, order confirmation
-- **Degrades gracefully** — API unreachable? The storefront falls back to bundled data
-  with visible status (tested in a dedicated degraded-mode E2E suite)
+## Overview
+This repository contains the storefront, the reference API, and the deployment-facing wrapper for the business.
 
 ## Stack
+- React 19
+- TypeScript
+- Vite 7
+- Tailwind CSS 4
+- React Router 7
+- Zustand
+- TanStack Query
+- Node reference API
+- Vercel deployment
 
-React 19 · TypeScript (strict) · Vite 7 · Tailwind CSS 4 · Zustand · React Router 7 ·
-TanStack Query · Framer Motion · Vitest + Playwright (+ axe-core) · zero-dependency Node
-reference API · Vercel (serverless + prerendered static output)
-
-## Quick start
-
-```bash
-git clone <this-repo>
-cd rollers-republic/app
-npm ci
-npm run dev            # http://localhost:5173
+## Repository structure
+```text
+.
+├── app/
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── ...
+├── server/
+│   ├── index.js
+│   ├── seed.json
+│   └── ...
+├── api/
+│   └── ...
+├── docs/
+│   ├── API.md
+│   ├── ARCHITECTURE.md
+│   ├── SSOT.md
+│   ├── ONBOARDING.md
+│   ├── TESTING.md
+│   ├── DECISIONS.md
+│   ├── CHANGELOG.md
+│   └── ...
+├── AGENTS.md
+├── CONTRIBUTING.md
+├── README.md
+├── .github/
+│   ├── copilot-instructions.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   └── ISSUE_TEMPLATE/
+├── package.json
+└── ...
 ```
 
-No env files needed — the app serves the bundled seed catalog out of the box.
+## Quick start
+```bash
+npm run doctor
+npm run setup
+cd app
+npm run dev
+```
 
-## Quality gates (Definition of Done — SSOT §10)
+## Development modes
 
+### Local bundled catalog
 ```bash
 cd app
-npm run lint            # zero errors
-npm test -- --run       # 151 unit tests
-npm run test:coverage   # thresholds: 84/75/80/84 (stmts/branch/funcs/lines)
-npm run build           # tsc + vite + 484-route prerender (~3 min)
-npm run test:e2e        # Playwright storeflow + axe-core a11y (24 specs)
+npm run dev
+```
+
+### Remote API mode
+```bash
+cd app
+VITE_USE_REMOTE_API=true VITE_API_BASE_URL=http://localhost:8787 npm run dev
+```
+
+### Reference API
+```bash
+cd server
+npm start
+```
+
+## Quality checks
+```bash
+cd app
+npm run lint
+npm test -- --run
+npm run test:coverage
+npm run build
+npm run test:e2e
 npm run test:e2e:degraded
 
 cd ../server
-npm test                # 37 API integration tests — zero dependencies, no install needed
-cd .. && npm run catalog:check # catalog.ts derives from server/seed.json (SSOT gate)
+npm test
+npm run catalog:check
 ```
 
-## Deployment (Vercel)
+## Important rules
+- The application uses `server/seed.json` as the source of truth for product data.
+- Generated catalog output must not be hand-edited.
+- Update API docs, product docs, and tests together when behavior changes.
+- Accessibility is required for all UI changes.
+- Do not invent product facts, mock customer reviews, or fake business claims.
 
-```bash
-npx vercel@latest pull --yes
-npx vercel@latest build --prod        # runs the full prerender locally
-npx vercel@latest deploy --prebuilt --prod
-```
+## Contributing
+See `CONTRIBUTING.md` and `AGENTS.md`.
 
-> Why prebuilt: Vercel's build image cannot launch modern chromium (glibc mismatch),
-> so the 484-route prerender runs locally and ships as Build Output API artifacts.
-> A plain `git push` still deploys — the prerender soft-skips and the SPA fallback
-> handles all routes (`SKIP_PRERENDER=1` forces this).
-
-## Catalog refresh
-
-Edit `server/seed.json` directly for catalog changes (it is the single source of truth),
-or re-snapshot from the live store:
-
-```bash
-cd app
-node scripts/fetch-catalog.mjs     # snapshot from rollerspub.com Woo Store API → ../../server/seed.json
-node scripts/generate-catalog.mjs  # refresh src/data/catalog.ts from seed.json (also runs via predev/prebuild)
-```
-
-## Project structure
-
-```
-app/                 React storefront (Vite)
-  src/data/          catalog.ts — generated fallback dataset (from server/seed.json)
-  src/lib/config.ts  ALL business configuration (SSOT §8)
-  scripts/           catalog fetch · catalog generator · sitemap · prerender · OG image
-server/              Zero-dependency Node reference API; seed.json = data SSOT (+ 28 integration tests)
-api/store.js         Vercel serverless wrapper (same-origin /api/* in production)
-docs/                SSOT · ARCHITECTURE · API · SEO-AUDIT · PITCH (+ sales one-pager)
-.github/             CI (typecheck · lint · test · build) · CodeQL · issue templates
-```
-
-## Credits & license
-
-Seeded from [`FahadIbrahim93/RollON-MVP-Final-V1`](https://github.com/FahadIbrahim93/RollON-MVP-Final-V1)
-(MIT) by Fahad Ibrahim — see [LICENSE](LICENSE) for dual attribution. Product data &
-imagery © Rollers Republic — used here as a proposal demo only.
+## License
+Follow the repository's legal policy and any project-specific licensing files.
