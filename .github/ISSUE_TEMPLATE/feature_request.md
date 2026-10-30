@@ -1,23 +1,30 @@
 ---
 name: Feature request
-about: Suggest an idea for Rollers Republic
-title: "[Feature] "
-labels: enhancement
-assignees: ''
+about: Suggest a new capability, improvement, or product change
+title: ""
+labels: ["enhancement"]
+assignees: ""
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+## Problem
+What problem are we solving?
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+## Proposed solution
+Describe the proposed behavior or design.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+## Goals / acceptance criteria
+- [ ]
+- [ ]
+- [ ]
 
-**How would this fit the template?**
-Rollers Republic is a production storefront. If your feature needs per-business
-configuration, note where it should plug into `src/lib/config.ts` or the docs in `docs/`.
+## Scope
+What is in scope vs out of scope?
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+## Dependencies
+List any required docs, APIs, data changes, or external services.
+
+## Risks / considerations
+Call out performance, accessibility, SEO, testing, or rollout concerns.
+
+## Related files / areas
+List repo files or sections that may be affected.
