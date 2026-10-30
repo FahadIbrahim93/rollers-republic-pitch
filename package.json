@@ -10,6 +10,8 @@
   "scripts": {
     "build": "cd app && npm run build",
     "test:server": "cd server && npm test",
-    "catalog:check": "cd app && node scripts/generate-catalog.mjs --check"
+    "catalog:check": "cd app && node scripts/generate-catalog.mjs --check",
+    "doctor": "node scripts/verify-project.mjs",
+    "setup": "cd app && npm ci && cd ../server && npm install --no-audit --no-fund"
   }
 }
