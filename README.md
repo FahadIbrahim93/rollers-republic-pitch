@@ -7,9 +7,11 @@
 [![A11y](https://img.shields.io/badge/WCAG%202.1%20AA%20·%20axe%20clean-D4AF37)](#quality-gates)
 [![Live](https://img.shields.io/badge/live-rollers--republic--pitch.vercel.app-black?logo=vercel)](https://rollers-republic-pitch.vercel.app)
 
-Production e-commerce storefront for **Rollers Republic** (rollerspub.com) — Bangladesh's
-pioneering headshop since 2013. Rolling papers, blunts, filter tips, waterpipes & bongs,
-vapes and munchies — imported from the UK with same-day Dhaka delivery.
+Proposal demo for **Rollers Republic** (rollerspub.com) — not a production storefront.
+Bangladesh's pioneering headshop since 2013. Rolling papers, blunts, filter tips, waterpipes & bongs,
+vapes and munchies — imported from the UK with same-day Dhaka delivery. The shop has not
+agreed to this demo. Keep the repository private until they do, and do not snapshot more
+of their catalog or add routes and tests before that conversation.
 
 **Live demo:** https://rollers-republic-pitch.vercel.app
 
@@ -107,4 +109,5 @@ docs/                SSOT · ARCHITECTURE · API · SEO-AUDIT · PITCH (+ sales 
 
 Seeded from [`FahadIbrahim93/RollON-MVP-Final-V1`](https://github.com/FahadIbrahim93/RollON-MVP-Final-V1)
 (MIT) by Fahad Ibrahim — see [LICENSE](LICENSE) for dual attribution. Product data &
-imagery © Rollers Republic — used here as a proposal demo only.
+imagery © Rollers Republic — used here as a proposal demo only, without the shop's agreement.
+Keep this private until they say yes.
