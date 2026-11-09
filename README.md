@@ -1,17 +1,10 @@
 # Rollers Republic — Smoking Headshop Storefront
 
-[![CI](https://github.com/TamimAbir/rollers-republic/actions/workflows/ci.yml/badge.svg)](https://github.com/TamimAbir/rollers-republic/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Stack](https://img.shields.io/badge/React%2019%20·%20TS%20strict%20·%20Vite%207-2b2b2b?logo=react)](docs/ARCHITECTURE.md)
-[![Tests](https://img.shields.io/badge/tests-212%20passing-2ECC71)](#quality-gates)
-[![A11y](https://img.shields.io/badge/WCAG%202.1%20AA%20·%20axe%20clean-D4AF37)](#quality-gates)
-[![Live](https://img.shields.io/badge/live-rollers--republic--pitch.vercel.app-black?logo=vercel)](https://rollers-republic-pitch.vercel.app)
+**Proposal demo / concept storefront for Rollers Republic (rollerspub.com) — not a production storefront, not a delivered client engagement.**
 
-Proposal demo for **Rollers Republic** (rollerspub.com) — not a production storefront.
-Bangladesh's pioneering headshop since 2013. Rolling papers, blunts, filter tips, waterpipes & bongs,
-vapes and munchies — imported from the UK with same-day Dhaka delivery. The shop has not
-agreed to this demo. Keep the repository private until they do, and do not snapshot more
-of their catalog or add routes and tests before that conversation.
+Bangladesh's pioneering headshop since 2013. Rolling papers, blunts, filter tips, waterpipes & bongs, vapes and munchies — imported from the UK with same-day Dhaka delivery. **The shop has not agreed to this demo.** This repository is a proposal built from publicly visible catalog information, shared as a concept only.
+
+**Do not cite this demo's marketing or customer numbers as achievements. The live public showcase is only https://rollers-republic.vercel.app/ — labeled an e-commerce concept/proposal demo.**
 
 **Live demo:** https://rollers-republic-pitch.vercel.app
 
